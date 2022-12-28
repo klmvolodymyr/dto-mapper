@@ -1,49 +1,23 @@
-Dto mapper bundle. (* in development*)
+# DataMapper
+[![Build Status](https://travis-ci.org/volodymyr-klymniuk/dto-mapper.svg?branch=master)](https://travis-ci.org/volodymyr-klymniuk/dto-mapper)
 
-Install
-```bash
-$ composer require volodymyr-klymniuk/dto-mapper-bundle
+# DataMapper library
+
+```text
+Generated hydrator wrapped with the ability to customize mapping behaviour.
+It's a perfect choice for throwing away dummy and heavy reflection based mappers.
 ```
 
-Just mark your destination class by meta annotations and push your array to MapperClass.
+## Installation
 
-Example:
+The suggested installation method is via [composer](https://getcomposer.org/):
 
-```php
-<?php
+```sh
+php composer.phar require volodymyr-klymniuk/dto-mapper
+```
 
-use MapperBundle\Mapping\Annotation\Meta\PropertyClassRelation;
-use MapperBundle\Mapping\Annotation\Meta\DestinationClass;
+## Documentation
+You can learn more about the mapper library and how to use the **DataMapper** in the [docs](docs).
 
-/**
- * Class RelationsRequestDto
- * @DestinationClass
- */
-class RelationsRequestDto
-{
-    /**
-     * @PropertyClassRelation(targetClass="Tests\DataFixtures\Dto\Destination\RegistrationRequestDto", multiply="true")
-     *
-     * @var RegistrationRequestDto[]
-     */
-    public $registrationsRequests = [];
-
-    /**
-     * @PropertyClassRelation(targetClass="Tests\DataFixtures\Dto\Destination\PersonalInfoDto")
-     *
-     * @var PersonalInfoDto
-     */
-    public $personalInfo;
-
-    /**
-     * @var array
-     */
-    public $extra = [];
-}    
-``` 
-
-Mapping directions: 
-
-    - Array to Object
-    - Array to ClassName
-    - Object to Array
+## Symfony bundle
+Watch it in action [dto-mapper-bundle](https://github.com/volodymyr-klymniuk/dto-mapper-bundle) for more examples.

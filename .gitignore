@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 /vendor/
 .idea
 /bin/*
 /vendor/
 composer.lock
+=======
+.idea
+/bin/*
+/vendor/
+composer.lock
+tmp/
+>>>>>>> 9e696a9 (More updates)
