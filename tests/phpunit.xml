@@ -4,20 +4,12 @@
          xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/9.5/phpunit.xsd"
          backupGlobals="false"
          colors="true"
-<<<<<<< HEAD
          bootstrap="./../vendor/autoload.php">
-=======
->
->>>>>>> 9e696a9 (More updates)
 
     <php>
         <ini name="error_reporting" value="-1" />
         <env name="APP_ENV" value="test" />
-<<<<<<< HEAD
         <env name="APP_DEBUG" value="test" />
-=======
-        <env name="APP_DEBUG" value="1" />
->>>>>>> 9e696a9 (More updates)
         <env name="SHELL_VERBOSITY" value="-1" />
     </php>
 

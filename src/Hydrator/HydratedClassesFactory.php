@@ -22,8 +22,15 @@ class HydratedClassesFactory
 
     public function extractHydratedClass(string $className): string
     {
-        $hydratedClassName = $this->extractHydratedClass($className);
+        $config = new Configuration($className);
 
-        return new $hydratedClassName();
+        if (null !== $this->targetDir) {
+            $config->setGeneratedClassesTargetDir($this->targetDir);
+            \spl_autoload_register($config->getGeneratedClassAutoloader());
+        }
+
+        $hydratedClassName = $config->createFactory()->getHydratorClass();
+
+        return $hydratedClassName;
     }
 }
