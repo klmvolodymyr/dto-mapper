@@ -15,7 +15,7 @@
         "ocramius/generated-hydrator": "4.1.x-dev"
     },
     "require-dev": {
-        "phpunit/phpunit": "9.5.x-dev"
+        "phpunit/phpunit": "^9.5"
     },
     "autoload": {
         "psr-4": {
