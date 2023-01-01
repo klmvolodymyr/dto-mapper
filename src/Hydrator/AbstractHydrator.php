@@ -103,7 +103,6 @@ abstract class AbstractHydrator implements HydratorInterface, StrategyEnabledInt
      * @param string $name    The name of the strategy to use.
      * @param mixed  $value   The value that should be converted.
      * @param mixed  $context The whole data is optionally provided as context.
-     *
      */
     protected function hydrateValue(string $name, $value, $context = null)
     {
@@ -135,8 +134,8 @@ abstract class AbstractHydrator implements HydratorInterface, StrategyEnabledInt
     /**
      * Converts a value for hydration. If no naming strategy exists, the plain value is returned.
      *
-     * @param string $name    The name to convert.
-     * @param array  $context The whole data is optionally provided as context.
+     * @param string      $name    The name to convert.
+     * @param null|array  $context The whole data is optionally provided as context.
      *
      * @return string
      */
@@ -192,7 +191,7 @@ abstract class AbstractHydrator implements HydratorInterface, StrategyEnabledInt
     abstract protected function validateTypes($source, $destination): void;
 
     /**
-     * @param array $source
+     * @param array  $source
      * @param object $target
      *
      * @return object

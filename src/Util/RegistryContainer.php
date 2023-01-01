@@ -2,12 +2,11 @@
 
 namespace DataMapper\Util;
 
-use DataMapper\MappingRegistry\Exception\DuplicateTypeException;
 use DataMapper\MappingRegistry\Exception\MappingRegistryException;
 
 abstract class RegistryContainer implements \ArrayAccess
 {
-    protected $container = [];
+    protected array$container = [];
 
     /**
      * {@inheritDoc}
@@ -22,7 +21,7 @@ abstract class RegistryContainer implements \ArrayAccess
      *
      * {@inheritDoc}
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         if (!$this->offsetExists($offset)) {
             throw new MappingRegistryException(static::class . ": offset - $offset not registered yet");

@@ -35,7 +35,7 @@ class ArrayAggregation
         foreach ($this->map($raw) as $keys => $values) {
             $key = \implode("\x00", $keys);
 
-            if (!\isset($result[$key])) {
+            if (empty($result[$key])) {
                 $result[$key] = [
                     'keys' => $keys,
                     'values' => $values,

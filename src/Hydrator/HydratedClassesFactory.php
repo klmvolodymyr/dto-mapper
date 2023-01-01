@@ -6,9 +6,9 @@ use GeneratedHydrator\Configuration;
 
 class HydratedClassesFactory
 {
-    private string $targetDir = '.';
+    private ?string $targetDir = null;
 
-    public function __construct(?string $targetDir = './')
+    public function __construct(?string $targetDir = null)
     {
         $this->targetDir = $targetDir;
     }
