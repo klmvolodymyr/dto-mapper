@@ -1,1 +1,0 @@
-{"version":1,"defects":{"Tests\\TestCase\\ArrayCollectionHydratorTest::testArrayToDtoMapping":4,"Tests\\TestCase\\ArrayCollectionHydratorTest::testArrayToDtoMapping with data set #0":4},"times":{"Tests\\TestCase\\ArrayCollectionHydratorTest::testArrayToDtoMapping":0.002,"Tests\\TestCase\\ArrayCollectionHydratorTest::testArrayToDtoMapping with data set #0":0.002}}

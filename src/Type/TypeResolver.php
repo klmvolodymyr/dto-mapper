@@ -40,7 +40,6 @@ final class TypeResolver
         return $type === TypeDict::CLASS_TYPE ? $variable : $type;
     }
 
-
     /**
      * @param mixed $source
      * @param mixed $destination

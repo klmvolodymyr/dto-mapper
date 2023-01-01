@@ -47,7 +47,7 @@ class CollectionStrategy implements StrategyInterface
      */
     public function hydrate($value, $context)
     {
-        if (!(\is_object($value) || \is_array($value))) {
+        if (null === $value || !(\is_object($value) || \is_array($value))) {
             return $value;
         }
 
@@ -62,7 +62,7 @@ class CollectionStrategy implements StrategyInterface
             $value = $value->toArray();
         }
 
-        return \array_map(
+        return array_map(
             function ($item) {
                 return $this->mapper->convert($item, $this->relationTargetClass);
             },

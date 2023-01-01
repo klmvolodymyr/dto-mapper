@@ -7,11 +7,11 @@ use DataMapper\Type\TypeDict;
 
 class Mapper implements MapperInterface
 {
-    private $hydratorFactor;
+    private $hydratorFactory;
 
-    public function __construct(HydratorFactoryInterface  $hydratorFactor)
+    public function __construct(HydratorFactoryInterface  $hydratorFactory)
     {
-        $this->hydratorFactor = $hydratorFactor;
+        $this->hydratorFactory = $hydratorFactory;
     }
 
     /**
@@ -19,14 +19,15 @@ class Mapper implements MapperInterface
      */
     public function convert($source, $destination)
     {
-        if (null === $source || !(\is_object($source)) || \is_array($source)) {
+        if (null === $source || !(\is_object($source) || \is_array($source))) {
             return $source;
         }
 
         $dto = $this
-            ->hydratorFactor
+            ->hydratorFactory
             ->createHydrator($source, $destination)
             ->hydrate($source, $destination);
+
 
         return $dto;
     }
@@ -47,7 +48,7 @@ class Mapper implements MapperInterface
     public function extract(object $source): array
     {
         return $this
-            ->hydratorFactor
+            ->hydratorFactory
             ->createHydrator($source, TypeDict::ARRAY_TYPE)
             ->extract($source);
     }

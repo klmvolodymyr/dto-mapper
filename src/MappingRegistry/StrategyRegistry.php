@@ -15,7 +15,7 @@ final class StrategyRegistry extends RegistryContainer implements StrategyRegist
      */
     public function hasRegisteredPropertyStrategy(string $key, string $property): bool
     {
-        return $this->offsetExists($key) ? isset($this->offsetGet($key)[$property]) : false;
+        return $this->offsetExists($key) && isset($this->offsetGet($key)[$property]);
     }
 
     /**
@@ -42,7 +42,11 @@ final class StrategyRegistry extends RegistryContainer implements StrategyRegist
             $defaultStrategiesExtractData = $this->offsetGet($defaultStrategiesExtractKey);
         }
 
-        $defaultStrategiesInjectKey = TypeResolver::implodeType(TypeDict::ALL_TYPE, $destination, TypeDict::STRATEGY_GLUE);
+        $defaultStrategiesInjectKey = TypeResolver::implodeType(
+            TypeDict::ALL_TYPE,
+            $destination,
+            TypeDict::STRATEGY_GLUE
+        );
 
         if ($this->offsetExists($defaultStrategiesInjectKey)) {
             $defaultStrategiesInjectData = $this->offsetGet($defaultStrategiesInjectKey);

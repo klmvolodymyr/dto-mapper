@@ -77,22 +77,11 @@ class ArrayToDtoHydrationTest extends TestCase
         $mappingRegistry = $this->createMappingRegistry();
         $hydrationRegistry = $this->createHydrationRegistry();
         $strategyKey = TypeResolver::getStrategyType($source, $className);
-
-        $mappingRegistry
-            ->getClassMappingRegistry()
-            ->registerMappingClass($className);
-
+        $mappingRegistry->getClassMappingRegistry()->registerMappingClass($className);
         $mappingRegistry
             ->getNamingRegistry()
-            ->registerNamingStrategy(
-                $strategyKey,
-                $this->createSnakeCaseNamingStrategy()
-            );
+            ->registerNamingStrategy($strategyKey, $this->createSnakeCaseNamingStrategy());
 
-        return (new HydratorFactory(
-            $hydrationRegistry,
-            $mappingRegistry
-            )
-        )->createHydrator($source, $className);
+        return (new HydratorFactory($hydrationRegistry, $mappingRegistry))->createHydrator($source, $className);
     }
 }

@@ -5,6 +5,7 @@ namespace Tests\TestCase;
 use DataMapper\Hydrator\HydratorFactory;
 use DataMapper\Hydrator\HydratorInterface;
 use DataMapper\Mapper;
+use DataMapper\MapperInterface;
 use DataMapper\Strategy\CollectionStrategy;
 use DataMapper\Type\TypeResolver;
 
@@ -25,8 +26,9 @@ class ArrayCollectionHydratorTest extends TestCase
     public function testArrayToDtoMapping(array $parameters, array $relations): void
     {
         /** @var RelationsRequestDto $dto */
-        $hydrator = $this->createHydrator($parameters, RelationsRequestDto::class, $relations);
-        $dto = $hydrator->hydrate($parameters, RelationsRequestDto::class);
+        $mapper = $this->createHydrator($parameters, RelationsRequestDto::class, $relations);
+
+        $dto = $mapper->convert($parameters, RelationsRequestDto::class);
 
         $this->assertRegistrationData($parameters['registrations_requests'][0], $dto->getRegistrationsRequests()[0]);
         $this->assertRegistrationData($parameters['registrations_requests'][1], $dto->getRegistrationsRequests()[1]);
@@ -95,7 +97,7 @@ class ArrayCollectionHydratorTest extends TestCase
         ];
     }
 
-    protected function createHydrator(array $source, string $className, array $mappingProps): HydratorInterface
+    protected function createHydrator(array $source, string $className, array $mappingProps): MapperInterface
     {
         $mappingRegistry = $this->createMappingRegistry();
         $hydrationRegistry = $this->createHydrationRegistry();
@@ -113,11 +115,9 @@ class ArrayCollectionHydratorTest extends TestCase
         $mapper = new Mapper($factory);
 
         foreach ($mappingProps as [$prop, $target, $multi]) {
-            $mappingRegistry->getStrategyRegistry()->registerPropertyStrategy(
-                $strategyKey,
-                $prop,
-                new CollectionStrategy($mapper, $target, $multi)
-            );
+            $mappingRegistry
+                ->getStrategyRegistry()
+                ->registerPropertyStrategy($strategyKey, $prop, new CollectionStrategy($mapper, $target, $multi));
 
             $mappingRegistry
                 ->getNamingRegistry()
@@ -127,21 +127,19 @@ class ArrayCollectionHydratorTest extends TestCase
                 );
         }
 
-        return (new HydratorFactory($hydrationRegistry, $mappingRegistry))->createHydrator($source, $className);
+//        $factory = (new HydratorFactory($hydrationRegistry, $mappingRegistry))->createHydrator($source, $className);
+
+        return new Mapper(new HydratorFactory($hydrationRegistry, $mappingRegistry));
     }
 
     private function assertRegistrationData(array $registrationData, RegistrationRequestDto $dto): void
     {
-//        $this->assertEquals($dto->getFirstName(), $registrationData['first_name']);
-//        $this->assertEquals($dto->getLastName(), $registrationData['last_name']);
-//        $this->assertEquals($dto->getPassword(), $registrationData['password']);
-//        $this->assertEquals($dto->getCity(), $registrationData['city']);
-//        $this->assertEquals($dto->getCountry(), $registrationData['country']);
-//        $this->assertEquals($dto->getEmail(), $registrationData['email']);
-
-        var_dump($registrationData);
-        var_dump($dto);
-
+        $this->assertEquals($dto->getFirstName(), $registrationData['first_name']);
+        $this->assertEquals($dto->getLastName(), $registrationData['last_name']);
+        $this->assertEquals($dto->getPassword(), $registrationData['password']);
+        $this->assertEquals($dto->getCity(), $registrationData['city']);
+        $this->assertEquals($dto->getCountry(), $registrationData['country']);
+        $this->assertEquals($dto->getEmail(), $registrationData['email']);
         $this->assertEquals($dto->getBirthday(), $registrationData['birthday']);
     }
 }

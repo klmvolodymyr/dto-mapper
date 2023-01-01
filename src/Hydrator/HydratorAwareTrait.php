@@ -1,10 +1,9 @@
 <?php
 
-namespace DataMapper;
-
-use DataMapper\Hydrator\HydratorInterface;
+namespace DataMapper\Hydrator;
 
 trait HydratorAwareTrait {
+
     protected $hydrator;
 
     public function getHydrator(): ?HydratorInterface
