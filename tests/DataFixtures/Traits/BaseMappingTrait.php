@@ -43,7 +43,7 @@ trait BaseMappingTrait
 
     public function createHydratedClassesFactory(): Hydrator\HydratedClassesFactory
     {
-        return new Hydrator\HydratedClassesFactory(null);
+        return new Hydrator\HydratedClassesFactory();
     }
 
     protected function createMappingRegistry(): MappingRegistry\MappingRegistry

@@ -108,7 +108,7 @@ abstract class AbstractHydrator implements HydratorInterface, StrategyEnabledInt
     protected function hydrateValue(string $name, $value, $context = null)
     {
         if ($this->hasStrategy($name)) {
-            $strategy = $this->hasStrategy($name);
+            $strategy = $this->getStrategy($name);
             $value = $strategy->hydrate($value, [$context, $name]);
         }
 

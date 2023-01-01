@@ -14,7 +14,7 @@ abstract class RegistryContainer implements \ArrayAccess
      */
     public function offsetExists($offset): bool
     {
-        return \isset($this->container[$offset]);
+        return isset($this->container[$offset]);
     }
 
     /**

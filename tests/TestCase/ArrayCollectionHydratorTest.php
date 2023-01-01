@@ -28,6 +28,7 @@ class ArrayCollectionHydratorTest extends TestCase
         $hydrator = $this->createHydrator($parameters, RelationsRequestDto::class, $relations);
         $dto = $hydrator->hydrate($parameters, RelationsRequestDto::class);
 
+        var_dump($dto);die;
         $this->assertRegistrationData($parameters['registrations_requests'][0], $dto->getRegistrationsRequests()[0]);
         $this->assertRegistrationData($parameters['registrations_requests'][1], $dto->getRegistrationsRequests()[1]);
         $this->assertEquals($parameters['personal_info']['code_word'], $dto->getPersonalInfo()->getCodeWord());

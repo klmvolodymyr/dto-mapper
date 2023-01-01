@@ -8,7 +8,7 @@ class HydratedClassesFactory
 {
     private string $targetDir = '.';
 
-    public function __construct(?string $targetDir)
+    public function __construct(?string $targetDir = './')
     {
         $this->targetDir = $targetDir;
     }
