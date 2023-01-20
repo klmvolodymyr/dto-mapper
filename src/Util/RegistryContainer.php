@@ -10,10 +10,7 @@ use DataMapper\MappingRegistry\Exception\MappingRegistryException;
  */
 abstract class RegistryContainer
 {
-    /**
-     * @var array
-     */
-    protected $container = [];
+    protected array $container = [];
 
     /**
      * {@inheritDoc}

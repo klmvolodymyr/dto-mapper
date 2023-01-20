@@ -8,9 +8,6 @@ use DataMapper\Hydrator\ObjectHydrator;
 
 final class TypeResolver
 {
-    /**
-     * @return array
-     */
     public static function hydrationSupportedTypeSequence(): array
     {
         return [
